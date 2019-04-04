@@ -29,7 +29,7 @@ body {
     margin-top:-50px;
     margin-left:475px;
     text-align:center;
-    padding:2px;
+    padding:5px;
 }
 
 #timeLeft {
@@ -89,6 +89,15 @@ h1 {
     color:darkgreen;
     text-shadow:2px 2px white;
     text-decoration: underline wavy lightblue;
-    transform: rotate(-10deg);
+    transform:rotate(-12deg);
     padding-top:5px;
+    margin-left:-15px;
+}
+
+.col-md-5 {
+    transform:rotate(-25deg);
+    font-size:10pt;
+    margin-top:170px;
+    padding-left:205px;
+    
 }

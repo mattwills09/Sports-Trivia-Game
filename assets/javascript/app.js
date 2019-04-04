@@ -28,6 +28,7 @@ function start() {
 
     if (counter === 0) {
       alert("Time Up!  Let's see your scores!");
+      submit();
       stop();
     }
 }
@@ -44,9 +45,7 @@ function submit() {
   event.preventDefault();
   clearInterval(intervalId);
   clockRunning = false;
-
-
-  
+ 
   for (var i = 0; i < nodeList.length; i++) {
     if (nodeList[i].checked) {
       userScore += parseInt(nodeList[i].value);
@@ -57,7 +56,6 @@ function submit() {
   $("#results").html("<em><b>You got " + userScore + " / 5 correct!</b></em");
 }
 
-// HAVE GAME RESET AFTER SHOWS RESULTS (WITH BUTTON OR TIMER)
 function reset() {
   $("#results").empty();
 
