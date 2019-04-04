@@ -1,9 +1,11 @@
 // SET VARIABLES FOR QUIZ QUESTIONS, USER ANSWERS, SUBMIT BUTTON, RESET, RESULTS, SCOREBOARD
+$(document).ready(function() {
 
 var quizContainer = $("#quiz");
 var showResults = $("#results");
 var timeLeft = $("timeLeft");
-timeLeft = 40;
+var counter=40;
+$("#timeLeft").html(counter);
 var intervalId;
 
 $("#start").on("click", start);
@@ -21,10 +23,10 @@ function start() {
     }
 
   function decrement() {
-    timeLeft--;
-    $("#timeLeft").html("<h2>" + timeLeft + "</h2>");
+    counter--;
+    $("#timeLeft").html(counter);
 
-    if (timeLeft === 0) {
+    if (counter === 0) {
       alert("Time Up!  Let's see your scores!");
       stop();
     }
@@ -32,52 +34,43 @@ function start() {
 
 function stop() {
     clearInterval(intervalId);
-    showResults();
+    submit();
 }
 
+var userScore = 0;
+var nodeList = document.querySelectorAll("input[type='radio']");
+
 function submit() {
+  event.preventDefault();
   clearInterval(intervalId);
   clockRunning = false;
 
-  var radios = document.getElementsByName('q1', 'q2', 'q3', 'q4', 'q5');
 
-    for (var i = 0, length = radios.length; i < length; i++) {
-      if (radios[i].checked) {
-      console.log(radios);
-    break;
-  }
-}
-
-  $("#results").html("<em><b>You got " + showResults + " / 5 correct!</b></em");
-
-}
-
-function showResults() {
-
-}
-
-function reset() {
   
+  for (var i = 0; i < nodeList.length; i++) {
+    if (nodeList[i].checked) {
+      userScore += parseInt(nodeList[i].value);
+      console.log(userScore);
+    }
+  }
+
+  $("#results").html("<em><b>You got " + userScore + " / 5 correct!</b></em");
 }
-
-//----------------------------------------------
-
-
-// document.getElementById("gameForm").onsubmit = submit(); {
-//   q1 = parseInt(document.querySelector('input[name = "q1"]:checked').value);
-//   q2 = parseInt(document.querySelector('input[name = "q2"]:checked').value);
-//   q3 = parseInt(document.querySelector('input[name = "q3"]:checked').value);
-//   q4 = parseInt(document.querySelector('input[name = "q4"]:checked').value);
-//   q5 = parseInt(document.querySelector('input[name = "q5"]:checked').value);
-
-//   showResults = q1 + q2 + q3 + q4 + q5;
-
-//   document.getElementById("results").innerHTML = showResults;
-//   console.log(showResults);
-//   // return false;
-// }
-
-// TIMER NEEDED AFTER QUIZ STARTS, WHEN IT RUNS OUT, RUN SHOWRESULTS() FUNCTION
-// SET TIMEOUT, OR 
 
 // HAVE GAME RESET AFTER SHOWS RESULTS (WITH BUTTON OR TIMER)
+function reset() {
+  $("#results").empty();
+
+  clearInterval(intervalId);
+  
+  counter=40;
+  $("#timeLeft").empty();
+  $("#timeLeft").html(counter);
+
+  for (var j = 0; j < nodeList.length; j++) {
+    nodeList[j].checked = false;
+}}
+
+});
+
+//----------------------------------------------
