@@ -5,6 +5,7 @@
 body {
     background-image:url("../images/wrestling.jpeg");
     background-size:cover;
+    background-repeat:no-repeat;
 }
 
 .game {
